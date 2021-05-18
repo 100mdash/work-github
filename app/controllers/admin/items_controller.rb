@@ -8,7 +8,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
-    item=Item.find(item_params)
+    item=Item.new(item_params)
     item.save
     redirect_to item_path(item.id)
   end
