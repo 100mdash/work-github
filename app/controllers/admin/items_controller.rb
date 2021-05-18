@@ -5,9 +5,13 @@ class Admin::ItemsController < ApplicationController
 
   def new
     @item=Item.new
+    @genres=Genre.all
   end
 
   def create
+    @item=Item.new(item_params)
+    @item.save!
+    redirect_to admin_items_path
     item=Item.new(item_params)
     item.save
     redirect_to item_path(item.id)
@@ -23,13 +27,13 @@ class Admin::ItemsController < ApplicationController
 
   def update
     @item=Item.find(params[:id])
-    @item.update
+    @item.update(item_params)
     redirect_to item_path(@item.id)
   end
 
 private
 
  def item_params
-   params.require(:item).permtit(:name,:image,:introduction,:price,:genre,:is_active)
- end 
+   params.require(:item).permit(:name,:image,:introduction,:price,:genre,:is_active)
+ end
 end
