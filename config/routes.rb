@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  devise_for :instals
   devise_for :customers
   namespace :public do
     root 'homes#top'
