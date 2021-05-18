@@ -12,6 +12,9 @@ class Admin::ItemsController < ApplicationController
     @item=Item.new(item_params)
     @item.save!
     redirect_to admin_items_path
+    item=Item.new(item_params)
+    item.save
+    redirect_to item_path(item.id)
   end
 
   def show
