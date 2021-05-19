@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   devise_for :customers
   namespace :public do
     root 'homes#top'
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     post 'orders/confilm' => 'orders#confilm'
     get 'orders/complete' => 'orders#complete'
     resources :addresses, except: [:new, :show]
+    resources :shippings, except: [:new,:show]
     resources :cart_items, except: [:new, :show, :edit]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
 
@@ -31,7 +32,7 @@ Rails.application.routes.draw do
 
   end
 
- 
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 

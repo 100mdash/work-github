@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <h2>配送先編集</h2>
+    <%=form_with model:@shipping,url:public_shipping_path,local:true do%>
+    <div class="form">
+      <%=f.label :zip_code,'郵便番号（ハイフンなし）'%>
+      <%=f.text_field :zip_code,placeholder:"(例)000000"%>
+    </div>
+    <div class="form">
+      <%=f.label :address,'住所'%>
+      <%=f.text_field :address, placeholder:"東京都渋谷区代々木神園町0-0"%>
+    </div>
+    <div class="form">
+      <%=f.label :name,'名前'%>
+      <%=f.text_field :name,placeholder:"木口裕太"%>
+    </div>
+    <div class="form">
+      <%=f.submit '変更を保存する'%>
+    </div>
+    <%end%
+      
+  </div>
+</div>

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-  <h2>商品一覧</h2>
+  <h2>商品一覧</h2><span>(全<%= @items.count %>件)</span>
   <table class="table">
     <thead>
       <tr>
@@ -16,11 +16,20 @@
       <tr>
         <td><%=item.id%></td>
         <td><%=item.name%></td>
-        <td><%=item.price%></td>
+        <td><%=item.price%>円</td>
         <td><%=item.genre.name%></td>
+        <% if item.is_active==true%>
+        <td>
+          <p>販売中</p>
+        </td>  
+          <%else%>
+          <td>
+          <p>販売停止中</p>
+          </td>
       </tr>
       <%end%>
     </tbody>
+    <%end%>
   </table>
   </div>
 </div>
