@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 }
    root 'homes#top'
    get 'homes/about' => 'homes#about'
+
   namespace :public do
     resources :items, only: [:index, :show]
     resource :customers, except: [:index, :new, :create, :destroy]
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
     post 'orders/confilm' => 'orders#confilm'
     get 'orders/complete' => 'orders#complete'
     resources :addresses, except: [:new, :show]
+    resources :shippings, except: [:new,:show]
     resources :cart_items, except: [:new, :show, :edit]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
 
