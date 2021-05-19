@@ -1,28 +1,35 @@
-<h1>商品詳細</h1>
-<p>写真</p>
+<h2>商品詳細</h2>
+<%=attachment_image_tag @item, :image, :fill,300,300%>
 <table class="table">
   <tr>
     <td>商品名</td>
     <td><%= @item.name %></td>
-  </th>
-  <th>
+  </tr>
+  <tr>
     <td>商品説明</td>
     <td><%= @item.introduction %></td>
-  </th>
-  <th>
+  </tr>
+  <tr>
     <td>ジャンル</td>
     <td><%= @item.genre.name %></td>
-  </th>
-  <th>
+
     <td>
       税込価格</br>
       (税抜き価格)
     </td>
     <td><%= @item.price %>(<%= @item.add_tax_price.to_s(:delimited) %>)円</td>
-  </th>
-  <th>
+  </tr>
+  <tr>
+    <% if @item.is_active==true%>
     <td>販売ステータス</td>
-    <td></td>
-  </th>
+     <td>
+          <p>販売中</p>
+        </td>  
+          <%else%>
+          <td>
+          <p>販売停止中</p>
+          </td>
+    <%end%>
+  </tr>
 </table>
 <%= link_to "編集する" ,edit_admin_item_path(@item) %>
