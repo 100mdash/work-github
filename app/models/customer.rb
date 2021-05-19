@@ -4,4 +4,6 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-end
+  def change
+    add_column :customers, :is_deleted, :boolean, default: true, null: false
+  end
