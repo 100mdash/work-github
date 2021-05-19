@@ -11,7 +11,7 @@
   </th>
   <th>
     <td>ジャンル</td>
-    <td><%= @item.genre %></td>
+    <td><%= @item.genre.name %></td>
   </th>
   <th>
     <td>
@@ -25,4 +25,4 @@
     <td></td>
   </th>
 </table>
-<%= link_to "編集する" edit_admin_item_path %>
+<%= link_to "編集する" ,edit_admin_item_path(@item) %>
