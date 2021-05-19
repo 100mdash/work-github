@@ -1,5 +1,43 @@
-<div class= "row">
-  <h2 class="head-line text-center title_h2">会員情報編集</h2>
-  
-  
+<div class="container">
+  <div class= "row">
+    <div class="mx-auto">
+      <h2><%= @customer.first_name %>さんの会員詳細</h2>
+      <%= form_with model:@customer,url:public_customers_path, local:true do |f| %>
+        <div class="form-grop">
+          <%= f.label :会員ID %>
+          <%= f.text_field :id, class: 'form-control customer_id' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :氏名 %>
+          <%= f.text_field :first_name, class: 'form-control customer_first_neme' %>
+          <%= f.text_area :secound_name, class: 'form-control customer_secound_name' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :フリガナ %>
+          <%= f.text_field :first_name_alias, class: 'form-control customer_first_neme_alias' %>
+          <%= f.text_area :secound_name_alias, class: 'form-control customer_secound_name_alias' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :郵便番号 %>
+          <%= f.text_area :zip_code, class: 'form-control customer_zip_code' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :住所 %>
+          <%= f.text_area :address, class: 'form-control customer_address' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :電話番号 %>
+          <%= f.text_area :tel_number, class: 'form-control customer_tel_number' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :メールアドレス %>
+          <%= f.text_area :email, class: 'form-control customer_email' %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "変更を保存", class: 'btn btn-success' %>
+        </div>
+        <%= link_to "退会する", public_customers_unsubscribe_path, class: "glyphicon glyphicon-pencil btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
 </div>

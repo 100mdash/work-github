@@ -14,10 +14,14 @@
         <tbody>
           <% @customers.each do |customer| %>
             <tr>
-              <td>customer.id</td>
-              <td>customer.name</td>
-              <td>customer.email</td>
-              <td>customer.status</td>
+              <td><%= customer.id %></td>
+              <td><%= customer.first_name %></td>
+              <td><%= customer.email %></td>
+              <td>
+                <% if customer.is_deleted == false %>退会済
+                <% else %>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>
