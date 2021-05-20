@@ -15,29 +15,20 @@
         <% @cart_items.each do |cart_item| %>
          <tr>
            <td>
-             <%= attachment_image_tag item, :imege %>
+             <%= attachment_image_tag cart_item.item, :image %>
              <%= cart_item.item.name %>
            </td>
-           <td><%= cart_item.item.price.add_tax_price.to_s(:delimited) %></td>
+           <td><%= cart_item.item.add_tax_price.to_s(:delimited) %></td>
            <%= form_with model:@cart_item,url:public_cart_items_path, method: :post do |f| %>
            <td>
-             <%= cart_item.count %>
-             <%= f.select :count, options_for_select(@numbers, {selected: @cart_item.count.to_i} ) %>
+             <%= f.select :count, options_for_select(@numbers, {selected: cart_item.count.to_i} ) %>
             </td>
             <% end %>
-            <td><%= cart_item.item.price %></td>
-            <td><%= link_to "削除する",public_cart_item_path(@cart_item) method: :delete %></td>
+            <td><%= cart_item.item.add_tax_price.to_s(:delimited) %></td>
+            <td><%= link_to "削除する",public_cart_item_path(cart_item), method: :delete %></td>
          </tr>
         <% end %>
       </tbody>
     </table>
   </div>
 </div>
-<%= form_with(@cart_item) do |f| %>
-          <% if customer_signed_in? %>
-            <%= f.hidden_field :customer_id, value => current_customer.id %>
-          <% end %>
-        <% end %>
-          <%= f.hidden_field :item_id, value => @item.id %>
-          <%= f.submit"情報入力画面に進む",class :"btn-btn-success" %>
-         <% @cart_items.each do |cart_item| %>

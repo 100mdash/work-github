@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
-  
-  devise_for :customers
+
+  devise_for :customers, controllers: {
+  sessions:      'customers/sessions',
+  passwords:     'customers/passwords',
+  registrations: 'customers/registrations'
+}
+   root 'homes#top'
+   get 'homes/about' => 'homes#about'
+
   namespace :public do
-    root 'homes#top'
-     get 'home/about' => 'homes#about'
     resources :items, only: [:index, :show]
     resource :customers, except: [:index, :new, :create, :destroy]
     get 'customers/unsubscribe' => 'customers#unsubscribe'
@@ -12,13 +17,18 @@ Rails.application.routes.draw do
     post 'orders/confilm' => 'orders#confilm'
     get 'orders/complete' => 'orders#complete'
     resources :addresses, except: [:new, :show]
+    resources :shippings, except: [:new,:show]
     resources :cart_items, except: [:new, :show, :edit]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
 
   end
 
 
-  devise_for :admins
+  devise_for :admins, controllers: {
+  sessions:      'admins/sessions',
+  passwords:     'admins/passwords',
+  registrations: 'admins/registrations'
+}
   namespace :admin do
     root 'homes#top'
     resources :items, except: [:destroy]
@@ -31,7 +41,7 @@ Rails.application.routes.draw do
 
   end
 
- 
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
