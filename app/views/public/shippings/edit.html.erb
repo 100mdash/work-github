@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <h2>配送先編集</h2>
-    <%=form_with model:@shipping,url:public_shipping_path,local:true do%>
+    <%=form_with model:@shipping,url:public_shipping_path,local:true do |f| %>
     <div class="form">
       <%=f.label :zip_code,'郵便番号（ハイフンなし）'%>
       <%=f.text_field :zip_code,placeholder:"(例)000000"%>
@@ -17,7 +17,7 @@
     <div class="form">
       <%=f.submit '変更を保存する'%>
     </div>
-    <%end%
-      
+    <%end%>
+
   </div>
 </div>
