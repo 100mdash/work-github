@@ -24,7 +24,7 @@
              <%= f.select :count, options_for_select(@numbers, {selected: cart_item.count.to_i} ) %>
             </td>
             <% end %>
-            <td><%= cart_item.item.add_tax_price.to_s(:delimited) %></td>
+            <td><%= cart_item.syoukei.to_s(:delimited) %></td>
             <td><%= link_to "削除する",public_cart_item_path(cart_item), method: :delete %></td>
          </tr>
         <% end %>

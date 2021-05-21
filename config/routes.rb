@@ -16,7 +16,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :create, :index, :show]
     post 'orders/confilm' => 'orders#confilm'
     get 'orders/complete' => 'orders#complete'
-    resources :addresses, except: [:new, :show]
     resources :shippings, except: [:new,:show]
     resources :cart_items, except: [:new, :show, :edit]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
