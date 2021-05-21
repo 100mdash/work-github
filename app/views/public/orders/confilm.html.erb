@@ -51,7 +51,7 @@
         </p>
         <%= @order.shipping_name %>
       </div>
-      <%= form_with model: @order,url: public_orders_vpath, local:true do |f| %>
+      <%= form_with model: @order,url: public_orders_path, local:true do |f| %>
         <%= f.hidden_field :method_of_payment %>
         <%= f.hidden_field :shipping_zip_code %>
         <%= f.hidden_field :shipping_address %>
