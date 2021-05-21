@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    
+
 <h2>配送先登録/一覧</h2>
- <%=form_with model: @shipping,url:public_shippings_path,local:true do |f|%>
+ <%=form_with model: @shipping,url: public_shippings_path,local:true do |f|%>
 <div class="form">
  <%=f.label :zip_code, '郵便番号'%>
  <%=f.text_field :zip_code, autofocus: true,placeholder:"（例）000000"%>
@@ -35,7 +35,7 @@
       <td><%=shipping.zip_code%></td>
       <td><%=shipping.address%></td>
       <td><%=shipping.name%></td>
-      <td><%=link_to '編集',public_shipping(shipping.id)%><%=link_to '削除する',public_shipping(shipping.id),method: :delete%></td>
+      <td><%=link_to '編集する',edit_public_shipping_path(shipping.id), class: "mx-3 btn btn-success"%><%=link_to '削除する',public_shipping_path(shipping.id),method: :delete, class: " btn btn-danger"%></td>
     </tr>
   </tbody>
 </table>

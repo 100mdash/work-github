@@ -1,7 +1,6 @@
 class Public::CartItemsController < ApplicationController
 
   def index
-
     @cart_items = CartItem.all
     @numbers = ((1..10).to_a)
   end
@@ -16,7 +15,7 @@ class Public::CartItemsController < ApplicationController
   def update
     cart_item = CartItem.find(params[:id])
     cart_item.update(count: params[:count].to_i)
-    redirect_to current_cart
+    redirect_back fallback_location: root_path
   end
 
   def destroy
@@ -26,7 +25,8 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
-    @cart_item.destroy_all
+    @cart_item = current_customer.cart_items
+    CartItem.destroy_all
   end
 
   private
