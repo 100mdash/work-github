@@ -2,6 +2,8 @@ class Admin::OrdersController < ApplicationController
   def show
     @orders = Order.all
     @order = Order.find(params[:id])
+    @order_details = @order.order_details
+    @delivery_fee = 800
   end
 
   def update
