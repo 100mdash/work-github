@@ -6,7 +6,7 @@
         <tr>
           <td>購入者</td>
           <%= link_to do %>
-          <td><%= @order.customers.first_name %><%= @order.customers.second_name %></td>
+          <td><%= @order.shipping_name %></td>
           <% end %>
           <td></td>
         </tr>
@@ -44,19 +44,19 @@
           <th>製作ステータス</th>
         </tr>
       </thead>
-      <% @orders.each do |order| %>
+      <% @order_details.each do |f| %>
       <tbody>
         <tr>
-          <td><%= order.order_details.item_id.name %></td>
+          <td><%= f.item.name %></td>
         </tr>
         <tr>
-          <td><%= order.order_details.current_price.to_s(:delimited) %></td>
+          <td><%= f.current_price.to_s(:delimited) %></td>
         </tr>
         <tr>
-          <td><%= order.order_details.count %></td>
+          <td><%= f.count %></td>
         </tr>
         <tr>
-          <td>><%= (order.order_details.current_price.to_s(:delimited).to_i)*order_details.count %></td>
+          <td><%= (f.current_price.to_s(:delimited).to_i)*f.count %></td>
         </tr>
         <tr>
           <%= form_with model:@order,url:admin_path, method: :patch,local:true do |f| %>
@@ -75,11 +75,11 @@
         </tr>
         <tr>
           <td>送料</td>
-          <td><%= @order.delivery_fee %>円</td>
+          <td><%= @delivery_fee %>円</td>
         </tr>
         <tr>
           <td>請求金額合計</td>
-          <td><%= @order.total_price %>円</td>
+          <td><%= @order.total_price.to_i + @delivery_fee.to_i %>円</td>
         </tr>
       </tbody>
     </table>
