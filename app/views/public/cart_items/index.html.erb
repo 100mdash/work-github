@@ -21,10 +21,11 @@
              <%= cart_item.item.name %>
            </td>
            <td><%= cart_item.item.add_tax_price.to_s(:delimited) %></td>
-           <%= form_with model:@cart_item,url:public_cart_items_path, method: :post do |f| %>
+           <%= form_with model:[:public, cart_item] do |f| %>
            <td>
              <%= f.select :count, options_for_select(@numbers, {selected: cart_item.count.to_i} ) %>
-             <div class="btn btn-success btn-xm"><%= link_to "更新",public_cart_item_path(cart_item), method: :patch %></div>
+             <%= f.submit"更新", class: "btn btn-success" %>
+
             </td>
             <% end %>
             <td> <%= (cart_item.item.add_tax_price.to_s(:delimited).to_i)*cart_item.count %></td>

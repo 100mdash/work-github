@@ -5,7 +5,7 @@
     <%= @item.introduction %>
     <%= @item.add_tax_price.to_s(:delimited) %>円　(税込)
 
-    <%= form_with model:@cart_item,url:public_cart_items_path, method: :post do |f| %>
+    <%= form_with model:[:public, @cart_item] do |f| %>
       <% if customer_signed_in? %>
         <%= f.hidden_field :customer_id, :value => current_customer.id %>
       <% end %>
