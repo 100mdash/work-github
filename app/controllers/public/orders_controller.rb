@@ -7,7 +7,7 @@ class Public::OrdersController < ApplicationController
   def confilm
     @cart_items = current_customer.cart_items
     @order = Order.new(order_params)
-    @order.delivery_fee = 800
+    @delivery_fee = 800
     if params[:address_selection] == "0"
       @order.shipping_address = current_customer.address
       @order.shipping_zip_code = current_customer.zip_code
@@ -52,8 +52,8 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @orders = @order.all
-
+    @order_details = @order.order_details
+    @delivery_fee = 800
   end
 
   private

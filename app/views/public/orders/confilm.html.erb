@@ -10,17 +10,13 @@
             <th>数量</th>
             <th>小計</th>
           </tr>
-          <tr>
-            <th>送料</th>
-            <th></th>
-          </tr>
         </therd>
         <tbody>
+          <% @sum=0 %>
           <% @cart_items.each do |cart_item| %>
-            <% @sum=0 %>
             <tr>
               <td>
-               <%= attachment_image_tag cart_item.item, :image %>
+               <%= attachment_image_tag cart_item.item, :image, :fill, 80, 80 %></br>
                <%= cart_item.item.name %>
              </td>
              <td>
@@ -31,11 +27,26 @@
               </td>
               <td>
                 <%= (cart_item.item.add_tax_price.to_s(:delimited)).to_i* cart_item.count.to_i %>
-                <%= @sum+=(cart_item.item.add_tax_price.to_s(:delimited)).to_i* cart_item.count.to_i %>
+                <% @sum+=(cart_item.item.add_tax_price.to_s(:delimited)).to_i* cart_item.count.to_i %>
               </td>
             </tr>
           <% end %>
         </tbody>
+      </table>
+      <table>
+        <tr>
+          <td>送料</td>
+          <td><%= @delivery_fee %></td>
+        </tr>
+        <tr>
+
+        <tr>
+          <td>商品合計</td>
+          <td><%= @sum %></td>
+        </tr>
+          <td>請求金額</td>
+          <td><%= @sum.to_i+@delivery_fee.to_i %></td>
+        </tr>
       </table>
       <div>
         <p>
@@ -57,7 +68,7 @@
         <%= f.hidden_field :shipping_address %>
         <%= f.hidden_field :shipping_name %>
         <%= f.hidden_field :total_price, :value => (@sum) %>
-        <%= f.hidden_field :delivery_fee, :value => @order.delivery_fee %>
+        <%= f.hidden_field :delivery_fee, :value => @delivery_fee %>
         <%= f.submit '注文を確定する', class: "btn btn-success btn-lg" %>
       <% end %>
     </div>

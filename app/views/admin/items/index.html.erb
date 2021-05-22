@@ -1,5 +1,6 @@
 <div class="container py-5">
   <h5>商品一覧</h5>
+  <%= link_to "", new_admin_item_path,class: "fas fa-plus-square fa-2x" %>
     <div class="row">
       <div class="col my-2">
         <table class="table table-striped">
@@ -18,7 +19,8 @@
               <td><%= item.id %></td>
               <td>
                 <%= link_to admin_item_path(item.id) do %>
-                <%= item.name %>
+                  <%= attachment_image_tag(item, :image, :fill, 50, 50) %>
+                  <%= item.name %>
                 <% end %>
               </td>
               <td><%= item.price %>円</td>

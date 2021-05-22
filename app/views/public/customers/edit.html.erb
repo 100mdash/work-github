@@ -3,10 +3,6 @@
     <div class="mx-auto">
       <h2><%= @customer.first_name %>さんの会員詳細</h2>
       <%= form_with model:@customer,url:public_customers_path, local:true do |f| %>
-        <div class="form-grop">
-          <%= f.label :会員ID %>
-          <%= f.text_field :id, class: 'form-control customer_id' %>
-        </div>
         <div class="form-group">
           <%= f.label :氏名 %>
           <%= f.text_field :first_name, class: 'form-control customer_first_neme' %>

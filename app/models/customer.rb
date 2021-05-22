@@ -11,5 +11,14 @@ class Customer < ApplicationRecord
   def change
     add_column :customers, :is_deleted, :boolean, default: true, null: false
   end
+  validates :first_name, presence: true
+  validates :secound_name, presence: true
+  validates :first_name_alias, presence: true
+  validates :secound_name_alias, presence: true
+  validates :zip_code, length: {is: 7}
+  validates :address, presence: true
+  validates :tel_number, presence: true, numericality: { only_integer: true }
+  validates :encrypted_password, presence: true, length: {minimum: 6}
+  validates :email, presence: true
 
 end
