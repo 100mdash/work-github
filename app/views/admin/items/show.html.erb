@@ -1,5 +1,5 @@
 <h2>商品詳細</h2>
-<%=attachment_image_tag @item, :image, :fill,300,300%>
+<%=attachment_image_tag @item, :image, :fill,300,300 %>
 <table class="table">
   <tr>
     <td>商品名</td>
@@ -15,16 +15,16 @@
 
     <td>
       税込価格</br>
-      (税抜き価格)
+      (税抜価格)
     </td>
-    <td><%= @item.price %>(<%= @item.add_tax_price.to_s(:delimited) %>)円</td>
+    <td><%= @item.add_tax_price.to_s(:delimited) %>円</br>(<%= @item.price %>円)</td>
   </tr>
   <tr>
     <% if @item.is_active==true%>
     <td>販売ステータス</td>
      <td>
           <p>販売中</p>
-        </td>  
+        </td>
           <%else%>
           <td>
           <p>販売停止中</p>
