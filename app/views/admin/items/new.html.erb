@@ -2,8 +2,8 @@
   <h5>商品新規登録</h5>
   <div class="row">
     <div class="col-7 mx-auto">
+      <%= form_with model: @item,url: admin_items_path , local:true do |f| %>
       <table class="table table-borderless">
-        <%= form_with model: @item,url: admin_items_path , local:true do |f| %>
         <tbody>
           <tr>
             <td><%= f.label :image, '商品画像'%></td>
@@ -36,6 +36,7 @@
             <td><%=f.submit '新規登録',class: "btn btn-success" %></td>
           </tr>
         </tbody>
+        </table>
         <% end %>
     </div>
   </div>
