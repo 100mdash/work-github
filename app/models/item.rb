@@ -7,8 +7,12 @@ class Item < ApplicationRecord
     (self.price * 1.1).round
   end
 
+ 
+
   validates :name, presence: true, uniqueness: true
   validates :introduction, presence: true
   validates :genre_id, presence: true
   validates :price, presence: true
+
+
 end
