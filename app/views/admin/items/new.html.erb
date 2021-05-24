@@ -1,2 +1,36 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<div class="container py-5">
+  <h5>商品新規登録</h5>
+  <div class="row">
+    <div class="mx-auto">
+      <%= form_with model: @item,url: admin_items_path , local:true do |f| %>
+      <div class="form">
+        <%= f.label :image, '商品イメージ'%>
+        <%= f.attachment_field :image, autofocus: true,placeholder:"商品画像" %>
+      </div>
+      <div class="form">
+        <%= f.label :name, '商品名' %>
+        <%= f.text_field :name,placeholder:"商品名" ,class: "form-control item-name" %>
+      </div>
+      <div class="form">
+        <%= f.label :introduction, '商品説明' %>
+        <%= f.text_area :introduction,placeholder:"ここに説明文を記述します",class: "form-control item-introduction"%>
+      </div>
+      <div class="form">
+        <%= f.label :genre, 'ジャンル'%>
+        <%= f.collection_select :genre_id, @genres, :id, :name, {prompt: "選択してください"},class: "form-control genre" %>
+      </div>
+      <div class="form">
+        <%= f.label :price, '税抜価格' %>
+        <%= f.text_field :price,placeholder:"価格",class: "form-control price" %>
+      </div>
+      <div class="form">
+        <%=f.radio_button :is_active,true%>
+        <%=f.label:is_active, '販売中', value: true%>
+        <%=f.radio_button :is_active,false%>
+        <%=f.label :is_active, '販売停止中',value: false%>
+      </div>
+      <%=f.submit '新規登録',class: "btn btn-success my-2" %>
+　　  <% end %>
+　　</div>
+　</div>
+</div>

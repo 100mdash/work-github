@@ -1,2 +1,18 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <%= attachment_image_tag @item, :image, :fill,100,100 %>
+    <%= @item.name %>
+    <%= @item.introduction %>
+    <%= @item.add_tax_price.to_s(:delimited) %>円　(税込)
+
+    <%= form_with model:[:public, @cart_item] do |f| %>
+      <% if customer_signed_in? %>
+        <%= f.hidden_field :customer_id, :value => current_customer.id %>
+      <% end %>
+      <%= f.hidden_field :item_id, :value => @item.id %>
+      <%= f.select :count, options_for_select(@numbers, {selected: @cart_item.count.to_i} ) %>
+      <%= f.submit"カートに入れる", class: "btn btn-success" %>
+    <% end %>
+
+  </div>
+</div>
