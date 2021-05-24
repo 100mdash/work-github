@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   devise_for :customers, controllers: {
   sessions:      'customers/sessions',
   passwords:     'customers/passwords',
@@ -33,6 +32,7 @@ Rails.application.routes.draw do
   registrations: 'admins/registrations'
 }
   namespace :admin do
+    get "search" => 'searches#search'
     root 'homes#top'
     resources :items, except: [:destroy]
     resources :genres, only: [:index, :create, :edit, :update]
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     get 'orders/:id' => 'orders#show'
     resources :order_details, only: [:update]
     patch 'orders/:id' => 'orders#update'
-    
+
 
   end
 
