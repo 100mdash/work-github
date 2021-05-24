@@ -6,6 +6,7 @@ class Admin::HomesController < ApplicationController
     else
       @orders = Order.all
     end
+    @prducts = Order.page(params[:page]).per(1)
   end
   
 end

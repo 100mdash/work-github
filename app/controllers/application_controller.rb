@@ -13,10 +13,15 @@ class ApplicationController < ActionController::Base
   def after_admins_sign_in_path_for(resource)
     admin_items_path(resource)
   end
-
+  
   def after_sign_out_path_for(resource)
-    root_path # ログアウト後に遷移するpathを設定
+    if resource == :admin
+      new_admin_session_path
+    else
+      root_path
+    end
   end
+   
 
   protected
 

@@ -11,10 +11,8 @@ class Public::CartItemsController < ApplicationController
     if @cart_item.blank?
       @cart_item = current_customer.cart_items.new(cart_item_params)
     else
-      p @cart_item
       @cart_item.count += params[:cart_item][:count].to_i
     end
-     p @cart_item
       @cart_item.save
       redirect_to public_cart_items_path
   end
