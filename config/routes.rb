@@ -36,9 +36,9 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, except: [:new, :create, :destroy]
     get 'orders/:id' => 'orders#show'
-    patch 'orders/:id' => 'orders#update' do
-      patch 'order_details/:id' => 'order_details#update'
-    end
+    patch 'orders/:id' => 'orders#update' 
+    patch 'order_details/:id' => 'order_details#update'
+
 
   end
 
