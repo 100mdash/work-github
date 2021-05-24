@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :customers, controllers: {
   sessions:      'customers/sessions',
   passwords:     'customers/passwords',
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
    get 'homes/about' => 'homes#about'
 
   namespace :public do
+    get "search" => 'searches#search'
     resources :items, only: [:index, :show]
     resource :customers, except: [:index, :new, :create, :destroy]
     get 'customers/unsubscribe' => 'customers#unsubscribe'

@@ -1,4 +1,5 @@
 <div class="container">
+  <%= render 'search' %>
   <h2>商品一覧<span class="font-weit-nomal small">(全<%= @items.count %>件)</span></h2>
     <div class="row" style="flex-wrap:wrap;">
       <% @items.each do |item| %>
@@ -11,4 +12,5 @@
       </div>
     <% end %>
   </div>
+    <%= paginate @items %>
 </div>

@@ -1,6 +1,6 @@
 <h2>会員ログイン</h2>
 <p>会員の方はこちらからログイン</p>
-
+<%= render "customers/shared/error_messages", resource: resource %>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :メールアドレス %><br />
