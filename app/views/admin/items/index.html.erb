@@ -1,6 +1,8 @@
 <div class="container py-5">
-  <h5>商品一覧</h5>
-  <%= link_to "", new_admin_item_path,class: "fas fa-plus-square fa-2x" %>
+  <h5>
+    商品一覧
+    <%= link_to "", new_admin_item_path,class: "fas fa-plus-square fa-lg" %>
+  </h5>
     <div class="row">
       <div class="col my-2">
         <table class="table table-striped">
@@ -8,22 +10,21 @@
             <tr>
               <th>商品ID</th>
               <th>商品名</th>
-              <th>税抜き価格</th>
+              <th>税抜価格</th>
               <th>ジャンル</th>
               <th>ステータス</th>
             </tr>
           </thead>
-          <% @items.each do |item| %>
           <tbody>
+          <% @items.each do |item| %>
             <tr>
               <td><%= item.id %></td>
               <td>
                 <%= link_to admin_item_path(item.id) do %>
-                  <%= attachment_image_tag(item, :image, :fill, 50, 50) %>
                   <%= item.name %>
                 <% end %>
               </td>
-              <td><%= item.price %>円</td>
+              <td><%= item.price.to_s(:delimited) %>円</td>
               <td><%= item.genre.name %></td>
               <% if item.is_active == true %>
                 <td>販売中</td>  
@@ -31,9 +32,10 @@
                 <td>販売停止中</td>
               <% end %>
             </tr>
+          <% end %> 
           </tbody>
-          <% end %>
         </table>
       </div>
     </div>
+    <%= paginate @prducts %>
 </div>
