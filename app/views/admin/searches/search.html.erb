@@ -1,32 +1,39 @@
-<h5>会員一覧</h5>
-    <div class="row">
-      <div class="col my-2">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>会員ID</th>
-              <th>氏名</th>
-              <th>メールアドレス</th>
-              <th>ステータス</th>
-            </tr>
-          </thead>
-          <tbody>
-
-          <% @customers.each do |customer| %>
-            <tr>
-              <td><%= customer.id %></td>
-              <td>
-                <%= link_to admin_customer_path(customer.id) do %>
-                <%= customer.first_name %><%= customer.secound_name %>
-                <% end %>
-              </td>
-              <td><%= customer.email %></td>
-              <td>
-                <% if customer.is_deleted == 'Invalid' %>退会済
-                <% else %>有効
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-          </tbody>
-        </table>
+<div class="container py-5">
+  <div class="row">
+    <div class="col my-2">
+      <h5>検索結果</h5>
+      <% if @customers.empty? %>
+        <h4 class="text-center">該当する会員はいません</h4>
+      <% end %>
+      <% @customers.each do |customer| %>
+      <h5>会員一覧</h5>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= customer.id %></td>
+            <td>
+              <%= link_to admin_customer_path(customer.id) do %>
+              <%= customer.first_name %><%= customer.secound_name %>
+              <% end %>
+            </td>
+            <td><%= customer.email %></td>
+            <td>
+              <% if customer.is_deleted == 'Invalid' %>退会済
+              <% else %>有効
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
