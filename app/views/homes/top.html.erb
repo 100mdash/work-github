@@ -1,13 +1,16 @@
  <div class="containar">
   <div class="row col-8 mx-auto">
     <div class="col-8 offset-2 mx-auto">
-      <%= image_tag 'img/top.jpg', size: '600x420' %>
+      <%= link_to public_items_path do %>
+      <%= image_tag 'img/top.jpg', size: '600x420' %> 
+      <% end %>
       <p class="text-center my-5">
        ようこそ、ながのCAKEへ！<br>
   				 このサイトは、ケーキ販売のECサイトになります。<br>
   				 会員でない方も商品の閲覧はできますが、<br>
   				 購入には会員登録が必要になります。<br>
       </p>
+      <p class="text-center">↑商品一覧はこの画像クリックしてね♪↑</p>
     </div>
   </div>
 </div>
