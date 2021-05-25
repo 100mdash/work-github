@@ -20,7 +20,7 @@
             <% @cart_items.each do |cart_item| %>
              <tr>
                <td>
-                 <%= attachment_image_tag cart_item.item, :image, :fill, 50, 50 %>
+                 <%= attachment_image_tag cart_item.item, :image, :fill, 50, 50 %></br>
                  <%= cart_item.item.name %>
                </td>
                <td><%= cart_item.item.add_tax_price.to_s(:delimited) %>円</td>
