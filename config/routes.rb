@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   passwords:     'customers/passwords',
   registrations: 'customers/registrations'
 }
-   root 'homes#top'
-   get 'homes/about' => 'homes#about'
+  root 'homes#top'
+  get 'homes/about' => 'homes#about'
 
   namespace :public do
+   
     get "search" => 'searches#search'
     resources :items, only: [:index, :show]
     resource :customers, except: [:index, :new, :create, :destroy]

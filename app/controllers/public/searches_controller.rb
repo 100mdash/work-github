@@ -13,14 +13,17 @@ class Public::SearchesController < ApplicationController
 
   def forward(value)
     Item.where("name LIKE ?", "#{value}%")
+     
   end
 
   def backward(value)
     Item.where("name LIKE ?", "%#{value}")
+     
   end
 
   def partical(value)
     Item.where("name LIKE ?", "%#{value}%")
+     
   end
 
 
