@@ -1,33 +1,31 @@
-<h2>会員ログイン</h2>
-<p>会員の方はこちらからログイン</p>
-<%= render "customers/shared/error_messages", resource: resource %>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container py-5">
+  <%= render "customers/shared/error_messages", resource: resource %>
+  <h5>ログイン</h5>
+  <div class="row">
+    <div class="col-8 mx-auto my-2">
+      <h6>会員の方はこちらからログイン</h6>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td><%= f.label :メールアドレス %></td>
+            <td><%= f.email_field :email, autocomplete: "email", class: 'form-control customer_email' %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :パスワード %></td>
+            <td><%= f.password_field :password, autocomplete: "current-password", class: 'form-control customer_password' %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= f.submit "ログイン",class: "btn btn-primary" %></td>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
+      <h6>会員登録がお済みでない方</h6>
+      <p>
+        <%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。
+      </p>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
   </div>
-<% end %>
-<p>会員登録がお済みでない方は</p>
-        <div>
-          <p>
-          <%= link_to "こちら", new_customer_registration_path, class: "glyphicon glyphicon-pencil btn btn-success" %>
-          から新規登録を行ってください
-          </p>
-        </div>
-<%= render "customers/shared/links" %>
+</div>
