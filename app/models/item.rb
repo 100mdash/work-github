@@ -6,9 +6,9 @@ class Item < ApplicationRecord
   def add_tax_price
     (self.price * 1.1).round
   end
-  
+
    enum is_deleted: {Available: false, Invalid: true}
-  
+
 
   def self.looks(searches, words)
     if searches == "perfect_match"
