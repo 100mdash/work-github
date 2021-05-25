@@ -23,13 +23,15 @@
             <td>税込価格</td>
             <td><%= @item.add_tax_price.to_s(:delimited) %>円　(税込)</td>
           </tr>
-          <tr>
-            <td>個数選択</td>
-            <td><%= f.select :count, options_for_select(@numbers, {selected: @cart_item.count.to_i} ) %></td>
-          </tr>
-          <tr>
-            <td><%= f.submit "カートに入れる", class: "btn btn-success" %></td>
-          </tr>
+          <% if customer_signed_in? %>
+            <tr>
+              <td>個数選択</td>
+              <td><%= f.select :count, options_for_select(@numbers, {selected: @cart_item.count.to_i} ) %></td>
+            </tr>
+            <tr>
+              <td><%= f.submit "カートに入れる", class: "btn btn-success" %></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
       <% end %>

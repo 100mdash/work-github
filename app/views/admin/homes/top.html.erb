@@ -19,7 +19,7 @@
                 <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
                 <% end %>
               </td>
-              <td><%= order.shipping_name %></td>
+              <td><%= order.customer.first_name %><%= order.customer.secound_name %></td>
               <td><%= order.order_details.count %></td>
               <td><%= order.status %></td>
             </tr>
