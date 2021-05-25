@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-8 mx-auto">
       <h5>検索結果</h5>
-      <% if @datas.empty? %>
+      <% if @value.blank? %>
         <h4 class="text-center">該当する商品はありません</h4>
-      <% end %>
+      <% else %>
       <% @datas.each do |data| %>
       <table class="table">
         <tr>
@@ -17,6 +17,7 @@
           <td>￥<%= data.price.to_s(:delimited) %>(税抜)</td>
         </tr>
       </table>
+      <% end %>
       <% end %>
     </div>
   </div>
