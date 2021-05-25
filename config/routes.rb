@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 }
   namespace :admin do
     get "search" => 'searches#search'
+    get "finder" => 'searches#finder'
     root 'homes#top'
     resources :items, except: [:destroy]
     resources :genres, only: [:index, :create, :edit, :update]

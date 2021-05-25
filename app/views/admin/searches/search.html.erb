@@ -1,14 +1,11 @@
 <div class="container py-5">
   <div class="row">
-    <div class="col-3">
-      <h5>会員検索</h5>
-      <%= form_with url: admin_search_path, method: :get, local: :true do |f| %>
-        <%= f.text_field :word %>
-        <%= f.submit "検索" %>
-        <%= f.select :search, options_for_select([["完全一致","perfect_match"],["前方一致","forward-match"],["後方一致","backword_match"],["部分一致","partial_match"]]), class: "my-2" %>
+    <div class="col my-2">
+      <h5>検索結果</h5>
+      <% if @customers.empty? %>
+        <h4 class="text-center">該当する会員はいません</h4>
       <% end %>
-    </div>
-    <div class="col-9">
+      <% @customers.each do |customer| %>
       <h5>会員一覧</h5>
       <table class="table table-striped">
         <thead>
@@ -20,7 +17,6 @@
           </tr>
         </thead>
         <tbody>
-        <% @customers.each do |customer| %>
           <tr>
             <td><%= customer.id %></td>
             <td>
@@ -40,5 +36,4 @@
       </table>
     </div>
   </div>
-  <%= paginate @prducts %>
 </div>

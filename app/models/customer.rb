@@ -18,6 +18,23 @@ class Customer < ApplicationRecord
     super && (self.is_deleted === "Available" )
   end
 
+  def self.looks(searches, words)
+
+        if searches == "perfect_match"
+            @customer = Customer.where("first_name || secound_name LIKE ?", "#{words}")
+
+
+        elsif searches == "forward_match"
+            @customer = Customer.where("first_name || secound_name LIKE ?", "#{words}%")
+
+        elsif searches == "backword_match"
+            @customer = Customer.where("first_name || secound_name LIKE ?", "%#{words}")
+
+        else
+            @customer = Customer.where("first_name || secound_name LIKE  ?", "%#{words}%")
+        end
+  end
+
   validates :first_name, presence: true
   validates :secound_name, presence: true
   validates :first_name_alias, presence: true
