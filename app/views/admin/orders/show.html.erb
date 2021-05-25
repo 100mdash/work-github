@@ -58,7 +58,7 @@
                 <td><%= order_detail.item.name %></td>
                 <td><%= order_detail.current_price.to_s(:delimited) %></td>
                 <td><%= order_detail.count %></td>
-                <td><%= (order_detail.current_price.to_s(:delimited).to_i)*order_detail.count %></td>
+                <td><%= (order_detail.current_price * order_detail.count) .to_s(:delimited)%></td>
               <%= form_with model: order_detail, url: admin_order_detail_path(order_detail),method: :patch, local:true do |f| %>
                 <td>
                   <%= f.select :making_status,OrderDetail.making_statuses.keys %>
@@ -83,7 +83,7 @@
             </tr>
             <tr>
               <td class="font-weight-bold">請求金額合計</td>
-              <td><%= @order.total_price.to_i + @delivery_fee.to_i %>.to_s(:delimited円</td>
+              <td><%= (@order.total_price.to_i + @delivery_fee.to_i).to_s(:delimited) %>円</td>
             </tr>
           </tbody>
         </table>
