@@ -1,2 +1,42 @@
-<h1>Admin::Customers#index</h1>
-<p>Find me in app/views/admin/customers/index.html.erb</p>
+<div class="container py-5">
+  <%= form_with url: admin_search_path, method: :get, local: :true do |f| %>
+      <%= f.select :search, options_for_select([["完全一致","perfect_match"],["前方一致","forward-match"],["後方一致","backword_match"],["部分一致","partial_match"]]) %>
+      <%= f.text_field :word %>
+      <%= f.submit "検索" %>
+  <% end %>
+  <h5>会員一覧</h5>
+    <div class="row">
+      <div class="col my-2">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>会員ID</th>
+              <th>氏名</th>
+              <th>メールアドレス</th>
+              <th>ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          <% @customers.each do |customer| %>
+            <tr>
+              <td><%= customer.id %></td>
+              <td>
+                <%= link_to admin_customer_path(customer.id) do %>
+                <%= customer.first_name %><%= customer.secound_name %>
+                <% end %>
+              </td>
+              <td><%= customer.email %></td>
+              <td>
+                <% if customer.is_deleted == 'Invalid' %>退会済
+                <% else %>有効
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <%= paginate @customers %>
+</div>
