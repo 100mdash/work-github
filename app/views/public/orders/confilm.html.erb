@@ -1,7 +1,6 @@
-<div class="container">
-      <h3 class="my-3">ご注文情報確認</h3>
+<div class="container py-5">
+  <h5 class="my-3">ご注文情報確認</h5>
   <div class="row col-12">
-
     <div class="row col-9">
       <table class="col-9  table table-striped table-bordered text-center">
         <therd>
@@ -40,33 +39,31 @@
       <table class=" table table-striped table-bordered text-center">
         <tr>
           <td>送料</td>
-          <td><%= @delivery_fee %></td>
+          <td><%= @delivery_fee %>円</td>
         </tr>
         <tr>
 
         <tr>
           <td>商品合計</td>
-          <td><%= @sum.to_s(:delimited ) %></td>
+          <td><%= @sum.to_s(:delimited ) %>円</td>
         </tr>
           <td>請求金額</td>
-          <td><%= (@sum+@delivery_fee).to_s(:delimited ) %></td>
+          <td><%= (@sum+@delivery_fee).to_s(:delimited ) %>円</td>
         </tr>
       </table>
     </div>
-
-
-
+    
     <div class="row col-12">
       <div class="row col-12 my-4">
-        <h4>支払方法</h4>
+        <h5 class="font-weight-bold">支払方法</h5>
         <p class="mx-4">
           <%= @order.method_of_payment %>
         </p>
       </div>
       <div class="row col-12">
-        <h4>お届け先</h4>
+        <h5 class="font-weight-bold">お届け先</h5>
         <p class="mx-5">
-          <%= @order.shipping_zip_code %></br>
+          〒<%= @order.shipping_zip_code %></br>
           <%= @order.shipping_address %></br>
         </p>
         <%= @order.shipping_name %>

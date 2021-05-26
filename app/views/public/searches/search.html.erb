@@ -1,9 +1,8 @@
-
 <div class="container">
   <div class="row">
     <div class="col-8 mx-auto">
       <h5>検索結果</h5>
-      <% if @value.blank? %>
+      <% if @value.blank? || @datas.empty? %>
         <h4 class="text-center">該当する商品はありません</h4>
       <% else %>
       <% @datas.each do |data| %>
