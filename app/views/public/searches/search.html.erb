@@ -1,4 +1,4 @@
-<% if @value.blank? %>
+<% if @value.blank? || @datas.empty? %>
   検索結果がありません。
 <% else %>
   <% @datas.each do |data| %>
