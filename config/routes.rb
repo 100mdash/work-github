@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   passwords:     'customers/passwords',
   registrations: 'customers/registrations'
 }
-   root 'homes#top'
-   get 'homes/about' => 'homes#about'
+  root 'homes#top'
+  get 'homes/about' => 'homes#about'
 
   namespace :public do
+   
+    get "search" => 'searches#search'
     resources :items, only: [:index, :show]
     resource :customers, except: [:index, :new, :create, :destroy]
     get 'customers/unsubscribe' => 'customers#unsubscribe'
@@ -31,13 +33,16 @@ Rails.application.routes.draw do
   registrations: 'admins/registrations'
 }
   namespace :admin do
+    get "search" => 'searches#search'
+    get "finder" => 'searches#finder'
     root 'homes#top'
     resources :items, except: [:destroy]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, except: [:new, :create, :destroy]
     get 'orders/:id' => 'orders#show'
-    patch 'orders/:id' => 'orders#update' 
-    patch 'order_details/:id' => 'order_details#update'
+    resources :order_details, only: [:update]
+    patch 'orders/:id' => 'orders#update'
+
 
 
   end

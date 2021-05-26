@@ -1,16 +1,21 @@
-<div class= "container">
-  <div class= "row">
+<div class= "container py-5">
+  <h5>注文情報入力</h5>
+  <div class= "row　col-12">
     <div class= "mx-auto">
-      <h2>注文情報入力</h2>
       <%=form_with model: @order,url: public_orders_confilm_path , local:true do |f|%>
         <div class="form">
-          <span>支払い方法</span>
-          <%=f.radio_button :method_of_payment, :クレジットカード, checked: true %>
-          <%=f.label:method_of_payment, 'クレジットカード', {value: :クレジットカード }%>
-          <%=f.radio_button :method_of_payment, :銀行振込 %>
-          <%=f.label :method_of_payment, '銀行振込', {value: :銀行振込 }%>
+          <span class="font-weight-bold">支払方法</span>
+          
+          <div class="field">  
+            <%=f.radio_button :method_of_payment, :クレジットカード, checked: true %>
+            <%=f.label:method_of_payment, 'クレジットカード', {value: :クレジットカード }%>
+          </div> 
+          <div class="field">
+            <%=f.radio_button :method_of_payment, :銀行振込 %>
+            <%=f.label :method_of_payment, '銀行振込', {value: :銀行振込 }%>
+          </div>  
         </div>
-
+        <span class="font-weight-bold">お届け先</span>
         <div>
           <div class="field form-group">
             <%= radio_button_tag :address_selection, 0, checked: "checked" %>
@@ -28,8 +33,8 @@
             <%= f.label :address_selection, "新しいお届け先" %>
           </div>
           <div class="form-row mb-2">
-            <%= f.label :shipping_zip_code, "郵便番号(ハイフンなし)", class: "col-sm-5" %>
-            <%= f.text_field :shipping_zip_code, :placeholder => "5610859", class: "col-sm-5" %>
+            <%= f.label :shipping_zip_code, "郵便番号(ハイフンなし)", class: "col-sm-2" %>
+            <%= f.text_field :shipping_zip_code, :placeholder => "5610859", class: "col-sm-8" %>
           </div>
           <div class="form-row mb-2">
             <%= f.label :shipping_address, "住所", class: "col-sm-2" %>
@@ -39,7 +44,9 @@
             <%= f.label :shipping_name, "宛名", class: "col-sm-2" %>
             <%= f.text_field :shipping_name, :placeholder => "木口裕太" ,class: "col-sm-8" %>
           </div>
-          <%= f.submit "確認画面へ進む", class: "btn btn-primary btn-lg" %>
+          <div class="row col-6 offset-5 ">
+          <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+          </div>
         </div>
       <% end %>
     </div>
